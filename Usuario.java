@@ -17,7 +17,6 @@ public class Usuario
     private float grasasT;
     // Atributo que almacena las calorias totales ingeridas:
     private float caloriasT;
-
     /**
      * Constructor for objects of class Usuario
      */
@@ -44,14 +43,29 @@ public class Usuario
 
     /**
      * Este método nos muestra el estado actual de un usuario por pantalla.
+     * Si el valor del macronutriente no es 0, además nos muestra el porcentaje
+     * sobre el total de los macronutrientes ingeridos.
      */
     public void mostrarDatos() 
     {
-
+        float totalNutrientes = (proteinasT + grasasT + carbohidratosT) / 100;
+        String datosProteinas = "Gramos totales de proteinas ingeridos:     " + proteinasT;
+        String datosCarbohidratos = "Gramos totales de carbohidratos ingeridos: " + carbohidratosT;
+        String datosGrasas = "Gramos totales de grasas ingeridos:        " + grasasT;
+        if (proteinasT > 0) {
+            datosProteinas = datosProteinas + " (" + proteinasT / totalNutrientes + "%)";
+        }
+        if (carbohidratosT > 0) {
+            datosCarbohidratos = datosCarbohidratos + " (" + carbohidratosT / totalNutrientes + "%)";
+        }
+        if (grasasT > 0) {
+            datosGrasas = datosGrasas + " (" + grasasT / totalNutrientes + "%)";
+        }
         System.out.println("Nombre:                                    " + nombre);
-        System.out.println("Gramos totales de proteinas ingeridos:     " + proteinasT);
-        System.out.println("Gramos totales de carbohidratos ingeridos: " + carbohidratosT);
-        System.out.println("Gramos totales de grasas ingeridos:        " + grasasT);
+        System.out.println(datosProteinas);    
+        System.out.println(datosCarbohidratos);
+        System.out.println(datosGrasas);
         System.out.println("Calorias totales ingeridas:                " + caloriasT);
+        
     }
 }
