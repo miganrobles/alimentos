@@ -28,6 +28,38 @@ public class Alimento
         this.grasas = grasas;
         calorias = (proteinas * 4) + (carbohidratos * 4) + (grasas * 9);
     }
+    
+    /**
+     * Nos devuelve los gramos de proteinas que tiene el alimento
+     */
+    public float getProteinas() 
+    {
+        return proteinas;
+    }
+    
+    /**
+     * Nos devuelve los gramos de grasas que tiene el alimento
+     */
+    public float getGrasas() 
+    {
+        return grasas;
+    }
+    
+    /**
+     * Nos devuelve los gramos de carbohidratos que tiene el alimento
+     */
+    public float getCarbohidratos() 
+    {
+        return carbohidratos;
+    }
+    
+    /**
+     * Nos devuelve las calorías que tiene el alimento
+     */
+    public float getCalorias() 
+    {
+        return calorias;
+    }
 
     /**
      * Este método nos muestra los valores de los distintos componentes del alimento 
