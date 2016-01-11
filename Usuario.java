@@ -28,6 +28,22 @@ public class Usuario
         carbohidratosT = 0;
         caloriasT = 0;
     }
+    
+    /**
+     * Este método nos devuelve el nombre del ususario.
+     */
+    public String getNombre()
+    {
+        return nombre;
+    }
+    
+    /**
+     * Este método nos devuelve las calorias totales que ha ingerido el usuario.
+     */
+    public float getCalorias()
+    {
+        return caloriasT;
+    }
 
     /**
      * El método comer recibe dos parámetros: 
@@ -67,5 +83,27 @@ public class Usuario
         System.out.println(datosGrasas);
         System.out.println("Calorias totales ingeridas:                " + caloriasT);
         
+    }
+    
+    /**
+     * Este método compara la ingesta de calorías entre dos usuarios y nos muestra la información por pantalla.
+     */
+    public void comparaComilones(Usuario usuarioComparado) 
+    {
+        String usuarioMasCalorias = nombre;
+        String usuarioMenosCalorias = usuarioComparado.getNombre();
+        float maximasCalorias = caloriasT;
+        float minimasCalorias = usuarioComparado.getCalorias();
+        String mensaje = " ha consumido más calorías que ";
+        if (usuarioComparado.getCalorias() == caloriasT) {
+            mensaje = " ha consumido las mismas calorías que ";
+        }
+        else if (usuarioComparado.getCalorias() > caloriasT) {
+            maximasCalorias = usuarioComparado.getCalorias();
+            minimasCalorias = caloriasT;
+            usuarioMasCalorias = usuarioComparado.getNombre();
+            usuarioMenosCalorias = nombre;
+        } 
+        System.out.println(usuarioMasCalorias + mensaje + usuarioMenosCalorias + " (" + maximasCalorias + " frente a " + minimasCalorias + ")");
     }
 }
