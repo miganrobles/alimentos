@@ -61,7 +61,7 @@ public class Usuario
         grasasT += (cantidad * comida.getGrasas() / 100);
         carbohidratosT += (cantidad * comida.getCarbohidratos() / 100);
         caloriasT += (cantidad * comida.getCalorias() / 100);
-        if (caloriasT >= masCalorias) {
+        if (comida.getCalorias() >= masCalorias) {
             masCalorias = comida.getCalorias();
             alimentoMasCalorias = comida;
         }
@@ -128,7 +128,7 @@ public class Usuario
                 masCalorias + " calorías por cada 100 gramos)" );
             }
             else {
-                System.out.println("El último alimento ingerido es " + alimentoMasCalorias.getNombre() + ", pero se han ingerido calorías" );
+                System.out.println("El último alimento ingerido es " + alimentoMasCalorias.getNombre() + ", pero no se han ingerido calorías" );
             }
         }
         else {
