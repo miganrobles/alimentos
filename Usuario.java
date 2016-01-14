@@ -17,6 +17,10 @@ public class Usuario
     private float grasasT;
     // Atributo que almacena las calorias totales ingeridas:
     private float caloriasT;
+    // Atributo que guarda la cantidad de calorias del alimento que mas calorias tiene de los ingeridos
+    private float masCalorias;
+    // Atributo que guarda el alimento que más calorías tiene.
+    private Alimento alimentoMasCalorias;
     /**
      * Constructor for objects of class Usuario
      */
@@ -27,6 +31,8 @@ public class Usuario
         grasasT = 0;
         carbohidratosT = 0;
         caloriasT = 0;
+        masCalorias = 0;
+        alimentoMasCalorias = null;
     }
     
     /**
@@ -55,6 +61,10 @@ public class Usuario
         grasasT += (cantidad * comida.getGrasas() / 100);
         carbohidratosT += (cantidad * comida.getCarbohidratos() / 100);
         caloriasT += (cantidad * comida.getCalorias() / 100);
+        if (caloriasT >= masCalorias) {
+            masCalorias = comida.getCalorias();
+            alimentoMasCalorias = comida;
+        }
     }
 
     /**
@@ -105,5 +115,24 @@ public class Usuario
             usuarioMenosCalorias = nombre;
         } 
         System.out.println(usuarioMasCalorias + mensaje + usuarioMenosCalorias + " (" + maximasCalorias + " frente a " + minimasCalorias + ")");
+    }
+    
+    /**
+     * Este método muestra por pantalla el alimento que contiene más calorias de los cosumidos
+     */
+    public void alimentoMasCalorias() 
+    {
+        if (alimentoMasCalorias != null) {
+            if (masCalorias > 0) {
+                System.out.println("Alimento más calórico ingerido por este usuario hasta el momento: " + alimentoMasCalorias.getNombre() + "(" + 
+                masCalorias + " calorías por cada 100 gramos)" );
+            }
+            else {
+                System.out.println("El último alimento ingerido es " + alimentoMasCalorias.getNombre() + ", pero se han ingerido calorías" );
+            }
+        }
+        else {
+            System.out.println("No se ha ingerido ningún alimento aún");
+        }
     }
 }

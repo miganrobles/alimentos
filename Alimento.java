@@ -30,6 +30,14 @@ public class Alimento
     }
     
     /**
+     * Nos devuelve el nombre del alimento
+     */
+    public String getNombre()
+    {
+        return nombre;
+    }
+    
+    /**
      * Nos devuelve los gramos de proteinas que tiene el alimento
      */
     public float getProteinas() 
