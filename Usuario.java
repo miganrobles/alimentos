@@ -127,7 +127,7 @@ public class Usuario
         if (alimentoMasCalorias != null) {
             if (alimentoMasCalorias.getCalorias() > 0) {
                 System.out.println("Alimento más calórico ingerido por este usuario hasta el momento: " + alimentoMasCalorias.getNombre() + "(" + 
-                alimentoMasCalorias.getCalorias() + " calorías por cada 100 gramos)" );
+                    alimentoMasCalorias.getCalorias() + " calorías por cada 100 gramos)" );
             }
             else {
                 System.out.println("El último alimento ingerido es " + alimentoMasCalorias.getNombre() + ", pero no se han ingerido calorías" );
@@ -151,25 +151,41 @@ public class Usuario
             System.out.println("El valor introducido para la consulta no es un índice válido o no ha ingerido aún ningún alimento");
         }
     }
-    
+
     /**
      * Este método permite pasar como parámetro el nombre de un alimento e indica si el usuario ha comido ese alimento más de una vez o no y,
      * en caso afirmativo, cuántas veces lo ha hecho
      */
     public void comidosMasDeUnaVez(String nombreAlimento) 
     {
-        int contadorAlimentos = 0;
+        int numeroComidosMasdeUnaVez = 0;
         for (Alimento alimentos : alimentosComidos) {
             if (alimentos.getNombre().contains(nombreAlimento)) {
-                contadorAlimentos++;
+                numeroComidosMasdeUnaVez++;
             }
         }
-        if (contadorAlimentos > 1) {
-            System.out.println(nombre + " ha comido " + nombreAlimento + " más de una vez, en concreto " + contadorAlimentos + " veces.");
+        if (numeroComidosMasdeUnaVez > 1) {
+            System.out.println(nombre + " ha comido " + nombreAlimento + " más de una vez, en concreto " + numeroComidosMasdeUnaVez + " veces.");
         }
         else {
             System.out.println(nombre + " no ha comido " + nombreAlimento + " más de una vez.");
+        }     
+    }
+
+    public void nombresComidosMasDeUnaVez() 
+    {
+        ArrayList<String> nombreAlimentosMasdeUnaVez = new ArrayList<>();
+        for (Alimento alimentos : alimentosComidos) {
+            String nombreAlimento = alimentos.getNombre();
+            for (Alimento alimentos2 : alimentosComidos) {
+                int numeroComidosMasdeUnaVez = 0;
+                if (alimentos2.getNombre().contains(nombreAlimento)) {
+                    numeroComidosMasdeUnaVez++;
+                }
+                if (numeroComidosMasdeUnaVez > 1) {
+
+                }
+            }
         }
-        
     }
 }
