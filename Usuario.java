@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class Usuario here.
  * 
@@ -15,12 +15,12 @@ public class Usuario
     private float carbohidratosT;
     // Atributo que almacena gramos totales de grasas ingeridos
     private float grasasT;
-    // Atributo que almacena las calorias totales ingeridas:
+    // Atributo que almacena las calorias totales ingeridas
     private float caloriasT;
-    // Atributo que guarda la cantidad de calorias del alimento que mas calorias tiene de los ingeridos
-    private float masCalorias;
-    // Atributo que guarda el alimento que más calorías tiene.
+    // Atributo que guarda el alimento que más calorías tiene
     private Alimento alimentoMasCalorias;
+    // Atributo para almacenar los alimentos ingeridos
+    private ArrayList<Alimento> alimentosComidos;
     /**
      * Constructor for objects of class Usuario
      */
@@ -31,10 +31,10 @@ public class Usuario
         grasasT = 0;
         carbohidratosT = 0;
         caloriasT = 0;
-        masCalorias = 0;
         alimentoMasCalorias = null;
+        alimentosComidos = new ArrayList<>();
     }
-    
+
     /**
      * Este método nos devuelve el nombre del ususario.
      */
@@ -42,7 +42,7 @@ public class Usuario
     {
         return nombre;
     }
-    
+
     /**
      * Este método nos devuelve las calorias totales que ha ingerido el usuario.
      */
@@ -57,12 +57,15 @@ public class Usuario
      */
     public void comer(Alimento comida, float cantidad)
     {
+        alimentosComidos.add(comida);
         proteinasT += (cantidad * comida.getProteinas() / 100);
         grasasT += (cantidad * comida.getGrasas() / 100);
         carbohidratosT += (cantidad * comida.getCarbohidratos() / 100);
         caloriasT += (cantidad * comida.getCalorias() / 100);
-        if (comida.getCalorias() >= masCalorias) {
-            masCalorias = comida.getCalorias();
+        if (alimentoMasCalorias == null) {
+            alimentoMasCalorias = comida;
+        }
+        else if (comida.getCalorias() >= alimentoMasCalorias.getCalorias()) {
             alimentoMasCalorias = comida;
         }
     }
@@ -92,9 +95,8 @@ public class Usuario
         System.out.println(datosCarbohidratos);
         System.out.println(datosGrasas);
         System.out.println("Calorias totales ingeridas:                " + caloriasT);
-        
     }
-    
+
     /**
      * Este método compara la ingesta de calorías entre dos usuarios y nos muestra la información por pantalla.
      */
@@ -116,16 +118,16 @@ public class Usuario
         } 
         System.out.println(usuarioMasCalorias + mensaje + usuarioMenosCalorias + " (" + maximasCalorias + " frente a " + minimasCalorias + ")");
     }
-    
+
     /**
      * Este método muestra por pantalla el alimento que contiene más calorias de los cosumidos
      */
     public void alimentoMasCalorias() 
     {
         if (alimentoMasCalorias != null) {
-            if (masCalorias > 0) {
+            if (alimentoMasCalorias.getCalorias() > 0) {
                 System.out.println("Alimento más calórico ingerido por este usuario hasta el momento: " + alimentoMasCalorias.getNombre() + "(" + 
-                masCalorias + " calorías por cada 100 gramos)" );
+                alimentoMasCalorias.getCalorias() + " calorías por cada 100 gramos)" );
             }
             else {
                 System.out.println("El último alimento ingerido es " + alimentoMasCalorias.getNombre() + ", pero no se han ingerido calorías" );
@@ -133,6 +135,20 @@ public class Usuario
         }
         else {
             System.out.println("No se ha ingerido ningún alimento aún");
+        }
+    }
+
+    /**
+     * Este método admite un parámetro entero, y nos muestra la posición en la que hemos ingerido un alimento
+     * según el parámetro pasado.
+     */
+    public void mostrarDatosAlimento(int indice) 
+    {
+        if (indice>= 0 && indice < alimentosComidos.size()) {
+            alimentosComidos.get(indice - 1).muestraDatos();
+        }
+        else {
+            System.out.println("El valor introducido para la consulta no es un índice válido o no ha ingerido aún ningún alimento");
         }
     }
 }
