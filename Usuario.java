@@ -151,4 +151,25 @@ public class Usuario
             System.out.println("El valor introducido para la consulta no es un índice válido o no ha ingerido aún ningún alimento");
         }
     }
+    
+    /**
+     * Este método permite pasar como parámetro el nombre de un alimento e indica si el usuario ha comido ese alimento más de una vez o no y,
+     * en caso afirmativo, cuántas veces lo ha hecho
+     */
+    public void comidosMasDeUnaVez(String nombreAlimento) 
+    {
+        int contadorAlimentos = 0;
+        for (Alimento alimentos : alimentosComidos) {
+            if (alimentos.getNombre().contains(nombreAlimento)) {
+                contadorAlimentos++;
+            }
+        }
+        if (contadorAlimentos > 1) {
+            System.out.println(nombre + " ha comido " + nombreAlimento + " más de una vez, en concreto " + contadorAlimentos + " veces.");
+        }
+        else {
+            System.out.println(nombre + " no ha comido " + nombreAlimento + " más de una vez.");
+        }
+        
+    }
 }
